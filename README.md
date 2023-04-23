@@ -62,11 +62,7 @@ eventClick: function(info) {
 
 					  $("#popup").html(contents); //위에서 설정한 contents를 팝업창으로 출력한다.
 					  $("#popup").bPopup({ //bPopup을 이용해서 애니매이션 옵션을 지정할수있다.
-						speed: 650,
-						transition: 'slideIn',
-						transitionClose: 'slideBack',
-						position: [($(document).width()-500)/2, 30] //x, y
-					  });
+						});
 					  info.jsEvent.stopPropagation(); //원래 작동되야하는 루틴을 막겠다 (일정 클릭시 구글캘린더 사이트로 이동하는 디폴트를 막는다.)
 					  info.jsEvent.preventDefault();
 				  }
