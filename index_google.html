@@ -4,25 +4,24 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href='fullcalendar.main.min.css' rel='stylesheet' />
 	<script src='ko.js'></script> 
-	<!-- 한글화 옵션 -->
     <script src='fullcalendar.main.min.js'></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
     <script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(calendarEl, {
-				  locale: "ko",  // 달력을 한글로 보이게 지역화
+				  locale: "ko", 
 				  initialView: 'dayGridMonth',
 				  headerToolbar: {
 					left: 'prev,next today',
 					center: 'title',
 					right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-				  }, // 헤더 툴바를 더 이쁘게 
-				  googleCalendarApiKey: 'AIzaSyCVm3GytTmG3uO_RbbMdU6h5xmFqpkMCGc',
+				  }, 
+				  googleCalendarApiKey: '',
 				  events: {
-				  googleCalendarId:'14ca095a50451d54bdf8e3175f333bb22dc375206038ba52a8da744a4c411753@group.calendar.google.com',
+				  googleCalendarId:'',
 				  className: 'gcal-event' // an option!
-				  }, //google 캘린더 API 양식
+				  }, 
 
 				  eventClick: function(info) {
 					  let start_year = info.event.start.getUTCFullYear();
@@ -38,11 +37,11 @@
 					  let attends = "";
 					  info.event.extendedProps.attachments.forEach(function(item) {
 						  attends += "<div><a href='"+item.fileUrl+"' target='_blank'>[첨부파일]</a></div>"
-					  });  //구글 캘린더에서 받아온 정보를 복수형태의 첨부파일을 받아올수있다.
+					  });  .
 
 					  if(!info.event.extendedProps.description) {
 						  info.event.extendedProps.description = "";
-					  } //설명내용이 비어있을때 undefined 상태가 되지 않게끔 공백을 밀어넣게 한다.
+					  } 
 
 					  let contents = `
 						<div style='font-weight:bold; font-size:20px; margin-bottom:30px; text-align:center'>
@@ -56,18 +55,15 @@
 							${attends}
 						</div>
 					  `;
-					 // 일정기간 
-					  // 제목
-					  // 설명 div 태그를 넣어 contents 변수에 담아둔다.
-
-					  $("#popup").html(contents); //id가 팝업인 제이쿼리 객체를 html contents 내용으로 출력한다.
-					  $("#popup").bPopup({ //bPopup을 script로 불러왔기때문에 쓸수있다.
+					
+					  $("#popup").html(contents); 
+					  $("#popup").bPopup({ 
 						speed: 650,
 						transition: 'slideIn',
 						transitionClose: 'slideBack',
 						position: [($(document).width()-500)/2, 30] //x, y
 					  });
-					  info.jsEvent.stopPropagation(); //원래 작동되야하는 루틴을 막겠다 (일정 클릭시 구글캘린더 사이트로 이동하는 디폴트를 막는다.)
+					  info.jsEvent.stopPropagation();
 					  info.jsEvent.preventDefault();
 				  }
 			});
